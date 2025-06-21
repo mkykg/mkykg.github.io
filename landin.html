@@ -486,6 +486,78 @@ body[data-wallpaper-type="animated"] {
 .overlay.open {
     display: block;
 }
+
+/* Proxy iframe styles */
+.proxy-iframe-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 200;
+    display: none;
+    background-color: white;
+}
+
+.proxy-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.proxy-controls {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 48px;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    z-index: 201;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.proxy-back-button,
+.proxy-forward-button,
+.proxy-refresh-button,
+.proxy-home-button,
+.proxy-close-button {
+    color: white;
+    background: none;
+    border: none;
+    font-size: 18px;
+    margin-right: 15px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.proxy-back-button:hover,
+.proxy-forward-button:hover,
+.proxy-refresh-button:hover,
+.proxy-home-button:hover,
+.proxy-close-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.proxy-url-bar {
+    flex-grow: 1;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 16px;
+    padding: 0 15px;
+    color: white;
+    font-size: 14px;
+    margin: 0 10px;
+}
+
+.proxy-url-bar:focus {
+    outline: none;
+    background-color: rgba(255, 255, 255, 0.3);
+}
 </style>
 </head>
 <body>
@@ -527,7 +599,6 @@ body[data-wallpaper-type="animated"] {
 
     <div class="settings-section">
         <div class="background-options" id="backgroundOptions">
-
             <div class="bg-option" data-bg="images/bg.png" onclick="selectBackground(this)">
                 <img src="images/bg.png" alt="Background Option">
             </div>
@@ -627,33 +698,131 @@ body[data-wallpaper-type="animated"] {
     </div>
 </div>
 
+<!-- Proxy iframe container -->
+<div class="proxy-iframe-container" id="proxyContainer">
+    <div class="proxy-controls">
+        <button class="proxy-back-button" onclick="proxyBack()">←</button>
+        <button class="proxy-forward-button" onclick="proxyForward()">→</button>
+        <button class="proxy-refresh-button" onclick="proxyRefresh()">↻</button>
+        <button class="proxy-home-button" onclick="proxyHome()">⌂</button>
+        <input type="text" class="proxy-url-bar" id="proxyUrlBar">
+        <button class="proxy-close-button" onclick="closeProxy()">×</button>
+    </div>
+    <iframe class="proxy-iframe" id="proxyFrame" name="proxyFrame"></iframe>
+</div>
+
+<script src="/active/uv/uv.bundle.js"></script>
+<script src="/active/uv/uv.config.js"></script>
+<script src="/active/uv/uv.sw.js"></script>
+<script src="/assets/js/register.js"></script>
 <script>
-document.getElementById('searchInput').addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        const query = this.value.trim();
-        if (query !== '') {
-            if (isValidUrl(query)) {
-                let url = query;
-                if (!url.startsWith('http://') && !url.startsWith('https://')) {
-                    url = 'https://' + url;
-                }
-                window.location.href = 'active/embed.html?url=' + encodeURIComponent(url);
-            } else {
-                window.location.href = 'active/embed.html?url=' + encodeURIComponent('https://www.duckduckgo.com/search?q=' + query);
-            }
+// Proxy functionality
+let currentProxyUrl = '';
+
+function navigateTo(url) {
+    loadProxyUrl(url);
+}
+
+function loadProxyUrl(url) {
+    try {
+        // Check if it's already a valid URL
+        new URL(url);
+        currentProxyUrl = url;
+    } catch {
+        // If not a valid URL, assume it's a search query
+        if (url.includes('.') && !url.includes(' ')) {
+            // Probably a domain without protocol
+            currentProxyUrl = 'https://' + url;
+        } else {
+            // Treat as search query
+            currentProxyUrl = 'https://www.google.com/search?q=' + encodeURIComponent(url);
+        }
+    }
+    
+    // Encode the URL for the proxy
+    const encoded = __uv$config.encodeUrl(currentProxyUrl);
+    const proxyUrl = __uv$config.prefix + encoded;
+    
+    // Show the proxy container and load the URL
+    document.getElementById('proxyContainer').style.display = 'block';
+    document.getElementById('proxyFrame').src = proxyUrl;
+    document.getElementById('proxyUrlBar').value = currentProxyUrl;
+}
+
+function proxyBack() {
+    const frame = document.getElementById('proxyFrame');
+    try {
+        frame.contentWindow.history.back();
+    } catch (e) {
+        console.log("Couldn't go back due to cross-origin restrictions");
+    }
+}
+
+function proxyForward() {
+    const frame = document.getElementById('proxyFrame');
+    try {
+        frame.contentWindow.history.forward();
+    } catch (e) {
+        console.log("Couldn't go forward due to cross-origin restrictions");
+    }
+}
+
+function proxyRefresh() {
+    const frame = document.getElementById('proxyFrame');
+    frame.contentWindow.location.reload();
+}
+
+function proxyHome() {
+    document.getElementById('proxyContainer').style.display = 'none';
+    document.getElementById('proxyFrame').src = '';
+    document.getElementById('proxyUrlBar').value = '';
+    currentProxyUrl = '';
+}
+
+function closeProxy() {
+    proxyHome();
+}
+
+// Update URL bar when navigation happens in the iframe
+document.getElementById('proxyFrame').addEventListener('load', function() {
+    try {
+        const currentUrl = this.contentWindow.location.href;
+        if (currentUrl.startsWith(window.location.origin + __uv$config.prefix)) {
+            const decoded = __uv$config.decodeUrl(currentUrl.split(__uv$config.prefix)[1]);
+            document.getElementById('proxyUrlBar').value = decoded;
+            currentProxyUrl = decoded;
+        }
+    } catch (e) {
+        console.log("Couldn't update address bar due to cross-origin restrictions");
+    }
+});
+
+// Handle URL bar input
+document.getElementById('proxyUrlBar').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        const url = this.value.trim();
+        if (url) {
+            loadProxyUrl(url);
         }
     }
 });
 
-function navigateTo(url) {
-    window.location.href = 'active/embed.html?url=' + encodeURIComponent(url);
-}
+// Original search functionality
+document.getElementById('searchInput').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        const query = this.value.trim();
+        if (query !== '') {
+            loadProxyUrl(query);
+        }
+    }
+});
 
 function isValidUrl(string) {
     const pattern = /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)$/;
     return pattern.test(string);
 }
 
+// Rest of your existing code for wallpaper management
 window.addEventListener('DOMContentLoaded', function() {
     const savedBg = localStorage.getItem('backgroundImage');
     const isAnimated = localStorage.getItem('isAnimatedWallpaper') === 'true';
