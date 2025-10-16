@@ -1,0 +1,22 @@
+{
+  "name": "mk",
+  "version": "0.0.0",
+  "description": "The offical MK browser made by MK",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkykg/mkykg.github.io.git"
+  },
+  "keywords": [
+    "MK"
+  ],
+  "author": "MK!",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mkykg/mkykg.github.io/issues"
+  },
+  "homepage": "https://github.com/mkykg/mkykg.github.io#readme"
+}
