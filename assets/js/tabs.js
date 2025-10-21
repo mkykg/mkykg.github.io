@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const tabsContainer = document.querySelector(".tabs");
   const newTabBtn = document.getElementById("new-tab");
-  const maxTabs = 4;
+  const maxTabs = 1;
 
   const setActiveTab = (tab) => {
     document
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tab.className = "tab";
     tab.innerHTML = `
       <div class="tabicon">
-        <img src="/assets/img/mk.png" alt="icon">
+        <img src="/assets/img/unblora.png" alt="icon">
       </div>
       <span class="tab-title">New Tab</span>
       <div class="close"><i class="fa fa-close"></i></div>
@@ -77,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const newTab = makeTab();
-    // nexora ima have to remove the tab limits b/c I want an actual chrome clone and chrome doesnt limit tha 
+    // nexora ima have to remove the tab limits b/c I want an actual chrome clone and chrome doesnt limit that for v1
     // kk
     tabsContainer.insertBefore(newTab, newTabBtn);
     setActiveTab(newTab);// check line 2 or 3nah 44444
@@ -98,11 +98,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // adress bar effect
 function suggest() {
     const adressBar = document.getElementById("adressbar");
-    adressBar.style.height = "40px";
+    // added css with the outline class and removed here
+    // adressBar.style.height = "40px";
     // adressBar.style.outline = "none";
     adressBar.classList.add("outline");
-    adressBar.style.backgroundColor = "#edf2fa";
-    adressBar.style.borderRadius = "15px";
+    // adressBar.style.backgroundColor = "#edf2fa";
+    // adressBar.style.borderRadius = "15px";
 }
 
 document.addEventListener("click", function(event) {
@@ -110,7 +111,7 @@ document.addEventListener("click", function(event) {
     
     // if the adress bar is clicked somehwerne else change it to regular focus
     if (!adressBar.contains(event.target)) {
-        adressBar.style.height = "30px";
+        // adressBar.style.height = "30px";
         adressBar.classList.remove("outline");
     }
 });
