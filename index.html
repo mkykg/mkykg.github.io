@@ -1,53 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MK! - The Amazing Browser</title>
-    <link rel="stylesheet" href="/style.css" />
-    <link rel="shortcut icon" href="/assets/img/mk.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/style.css">
+    <link rel="shortcut icon" href="/assets/img/mk.png" type="image/x-icon">
     <meta property="og:title" content="MK!" />
     <meta property="og:description" content="MK! is an amazing browser" />
-    <meta name="theme-color" content="#6895dc" />
-    <meta
-      name="keywords"
-      content="MK, proxy, unblocker, gaming site, games, browser, rammerhead, web browser, open source browser, web app browser, private browsing, safe browser"
-    />
-    <link rel="stylesheet" href="/assets/css/style.css" />
+    <meta name="theme-color" content="#6895dc">
+    <meta name="keywords" content="MK, proxy, unblocker, gaming site, games, browser, rammerhead, web browser, open source browser, web app browser, private browsing, safe browser" />
+    <link rel="stylesheet" href="/assets/css/style.css">
     <!-- <script src="/mk/uv/uv.bundle.js" defer></script>
     <script src="/mk/uv/uv.config.js" defer></script>
     <script src="/mk/uv/uv.client.js" defer></script> -->
     <script src="/assets/js/tabs.js" defer></script>
     <script src="/assets/js/proxy.js" defer></script>
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-  </head>
-  <body>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
     <div class="tabs">
-      <!-- ill do signin and stuff for the browser in here -->
-      <div class="user-icon" id="sinin">
-        <i class="fa fa-user-circle-o"></i>
-      </div>
-      <!--default tab made with js-->
-      <!-- <div class="tab active">
+        <!-- ill do signin and stuff for the browser in here -->
+        <div class="user-icon" id="sinin">
+            <i class="fa fa-user-circle-o"></i>
+        </div>
+        <!--default tab made with js-->
+        <!-- <div class="tab active">
             <div class="tabicon"checked>
                 <img src="/assets/img/MK.png" alt="">
             </div>
@@ -57,119 +39,51 @@
             </div>
         </div> -->
 
-      <div id="new-tab">
-        <i class="fas fa-plus"></i>
-      </div>
+        <div id="new-tab">
+            <i class="fas fa-plus"></i>
+        </div>
     </div>
     <div class="nav">
-      <div class="navicons">
-        <i
-          class="fas fa-arrow-left push navicon"
-          style="
-            color: #e0e0e0;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-            transition: background 0.15s;
-            margin-top: 7px;
-            margin-left: 7px;
-          "
-        ></i>
-        <i
-          class="fas fa-arrow-right navicon"
-          style="
-            color: #e0e0e0;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-            transition: background 0.15s;
-            margin-top: 7px;
-          "
-        ></i>
-        <i
-          class="fas fa-redo reload navicon"
-          style="
-            color: #474747;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 15px;
-            transition: background 0.15s;
-            margin-top: 7px;
-          "
-        ></i>
-        <input
-          type="text"
-          class="searchInput"
-          id="adressbar"
-          onclick="this.select(); suggest();"
-          placeholder="Search Google or type a URL"
-          autocomplete="off"
-        />
-        <div class="ab-btn">
-          <svg
-            class="action-btn"
-            viewBox="0 0 48 48"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M38 38H10V10h14V6H10c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V24h-4v14zM28 6v4h7.17L15.51 29.66l2.83 2.83L38 12.83V20h4V6H28z"
-            />
-          </svg>
-        </div>
+        <div class="navicons">
+        <i class="fas fa-arrow-left push navicon" style="color: #e0e0e0; border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: background 0.15s; margin-top: 7px; margin-left: 7px;"></i>
+        <i class="fas fa-arrow-right navicon" style="color: #e0e0e0; border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: background 0.15s; margin-top: 7px;"></i>
+        <i class="fas fa-redo reload navicon" style="color: #474747; border: none; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; transition: background 0.15s; margin-top: 7px;"></i>
+        <input type="text" class="searchInput" id="adressbar" onclick="this.select(); suggest();" placeholder="Search Google or type a URL" autocomplete="off">
+          <div class="ab-btn">
+  <svg class="action-btn" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+    <path d="M38 38H10V10h14V6H10c-2.21 0-4 1.79-4 4v28c0 2.21 1.79 4 4 4h28c2.21 0 4-1.79 4-4V24h-4v14zM28 6v4h7.17L15.51 29.66l2.83 2.83L38 12.83V20h4V6H28z"/>
+  </svg>
+</div>
         <div class="setting">
-          <i class="fas fa-ellipsis-v"></i>
+            <i class="fas fa-ellipsis-v"></i>
         </div>
+
       </div>
     </div>
+
 
     <div class="browser">
-      <div class="main">
-        <div class="icontainer">
-          <div class="info">
-            <p>
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Important: v0<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For
-              access to more links and support,
-              <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;join
-              the official MK! server
-              <a href="https://discord.gg/cTVqgJAryS">here</a>.
-            </p>
-          </div>
+        <div class="main">
+            <div class="icontainer">
+                <div class="info">
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Important: v0<br><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;For access to more links and support, <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;join the official MK! server <a href="https://discord.gg/cTVqgJAryS">here</a>.</p>
+                </div>
+            </div>
+            <div id="welcome">
+                <!-- <img src="/assets/img/mk.png" alt=""> -->
+                <h2>Welcome to MK! :)</h2>
+            </div>
+            <div class="search">
+                <input type="text" class="searchInput" autocomplete="off" placeholder="Search Google or type a URL">
+            </div>
+            <div class="forbidden" style="display: none;">
+                <h1>403</h1>
+                <h2 style="margin-top:20px;font-size: 30px;">Forbidden</h2>
+                <p>You must have at least one tab opened!</p>
+            </div>
         </div>
-        <div id="welcome">
-          <!-- <img src="/assets/img/mk.png" alt=""> -->
-          <h2>Welcome to MK! :)</h2>
-        </div>
-        <div class="search">
-          <input
-            type="text"
-            class="searchInput"
-            autocomplete="off"
-            placeholder="Search Google or type a URL"
-          />
-        </div>
-        <div class="forbidden" style="display: none">
-          <h1>403</h1>
-          <h2 style="margin-top: 20px; font-size: 30px">Forbidden</h2>
-          <p>You must have at least one tab opened!</p>
-        </div>
-      </div>
     </div>
-
+    
     <div class="accounts"></div>
-  </body>
+</body>
 </html>
