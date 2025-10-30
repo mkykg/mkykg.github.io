@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const tabsContainer = document.querySelector(".tabs");
   const newTabBtn = document.getElementById("new-tab");
-  const maxTabs = 1;
+  const maxTabs = 2;
 
   const setActiveTab = (tab) => {
     document
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tab.className = "tab";
     tab.innerHTML = `
       <div class="tabicon">
-        <img src="/assets/img/unblora.png" alt="icon">
+        <img src="/assets/img/mk.png" alt="icon">
       </div>
       <span class="tab-title">New Tab</span>
       <div class="close"><i class="fa fa-close"></i></div>
@@ -36,7 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const wasActive = tab.classList.contains("active");
       tab.remove();
 
-      const remainingTabs = tabsContainer.querySelectorAll(".tab:not(#new-tab)");
+      const remainingTabs =
+        tabsContainer.querySelectorAll(".tab:not(#new-tab)");
 
       if (wasActive && remainingTabs.length) {
         setActiveTab(remainingTabs[remainingTabs.length - 1]);
@@ -71,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const count = tabsContainer.querySelectorAll(".tab:not(#new-tab)").length;
     if (count >= maxTabs) {
       alert("sry but we have tab limits on v0:)");
-      //tabs fixed 
+      //tabs fixed
       //lol
       return;
     }
@@ -80,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // nexora ima have to remove the tab limits b/c I want an actual chrome clone and chrome doesnt limit that for v1
     // kk
     tabsContainer.insertBefore(newTab, newTabBtn);
-    setActiveTab(newTab);// check line 2 or 3nah 44444
+    setActiveTab(newTab); // check line 2 or 3nah 44444
 
     const icontainer = document.querySelector(".icontainer");
     const welcome = document.getElementById("welcome");
@@ -94,24 +95,23 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 // adress bar effect
 function suggest() {
-    const adressBar = document.getElementById("adressbar");
-    // added css with the outline class and removed here
-    // adressBar.style.height = "40px";
-    // adressBar.style.outline = "none";
-    adressBar.classList.add("outline");
-    // adressBar.style.backgroundColor = "#edf2fa";
-    // adressBar.style.borderRadius = "15px";
+  const adressBar = document.getElementById("adressbar");
+  // added css with the outline class and removed here
+  // adressBar.style.height = "40px";
+  // adressBar.style.outline = "none";
+  adressBar.classList.add("outline");
+  // adressBar.style.backgroundColor = "#edf2fa";
+  // adressBar.style.borderRadius = "15px";
 }
 
-document.addEventListener("click", function(event) {
-    const adressBar = document.getElementById("adressbar");
-    
-    // if the adress bar is clicked somehwerne else change it to regular focus
-    if (!adressBar.contains(event.target)) {
-        // adressBar.style.height = "30px";
-        adressBar.classList.remove("outline");
-    }
+document.addEventListener("click", function (event) {
+  const adressBar = document.getElementById("adressbar");
+
+  // if the adress bar is clicked somehwerne else change it to regular focus
+  if (!adressBar.contains(event.target)) {
+    // adressBar.style.height = "30px";
+    adressBar.classList.remove("outline");
+  }
 });
